@@ -23,5 +23,5 @@ echo "extra args: ${EXTRAARGS}"
 echo final args: ${AUTHARGS} ${NETARGS} ${EXTRAARGS}
 
 # start microsocks
-microsocks ${AUTHARGS} ${NETARGS} ${EXTRAARGS} &
+proxychains -f ./proxyconfig.conf microsocks ${AUTHARGS} ${NETARGS} ${EXTRAARGS} &
 echo "[+] microsocks started!"
