@@ -1,0 +1,30 @@
+services:
+  opnsock:
+    image: onixldlc/sshsocks:latest
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "1080:1080"
+    volumes:
+      - ./ssh.key:/etc/ssh/ssh.key        # optional
+      # - ./client.ovpn:/client.ovpn      # optional, if config path is used
+    environment:
+      # SSH configuration options
+      - CONFIG_HOSTS=127.0.0.1
+      - CONFIG_USERNAME=root
+      - CONFIG_PATH=./ssh.key             # optional
+      - CONFIG_BASE64=${CONFIG_BASE64}    # optional
+
+      # MicroSOCKS configuration options
+      - MICROSOCKS_USER=test              # optional
+      - MICROSOCKS_PASSWORD=test          # optional
+      - MICROSOCKS_AUTHONCE=true          # optional
+      - MICROSOCKS_LISTEN_IP=0.0.0.0      # optional
+      - MICROSOCKS_WHITELIST=10.10.10.10  # optional
+      - MICROSOCKS_BINDIP=0.0.0.0         # optional
+      - MICROSOCKS_PORT=1080              # optional
+      - MICROSOCKS_QUIET=false            # optional
+      
+      # Optional bandwidth limitations
+      - BANDWIDTH=1mbit                   # optional
+      - INTERFACE=eth0                    # optional
