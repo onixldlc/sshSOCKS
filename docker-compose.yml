@@ -1,5 +1,5 @@
 services:
-  opnsock:
+  sshsock:
     image: onixldlc/sshsocks:latest
     cap_add:
       - NET_ADMIN
