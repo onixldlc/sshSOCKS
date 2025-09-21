@@ -12,7 +12,7 @@ services:
       # SSH configuration options
       - CONFIG_HOSTS=127.0.0.1
       - CONFIG_USERNAME=root
-      - CONFIG_PATH=./ssh.key             # optional
+      - CONFIG_PATH=/ssh.key             # optional
       - CONFIG_BASE64=${CONFIG_BASE64}    # optional
 
       # MicroSOCKS configuration options
