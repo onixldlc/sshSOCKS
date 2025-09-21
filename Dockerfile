@@ -6,6 +6,7 @@ RUN apk add --no-cache \
     bash \
     openssh \
     iproute2-tc \
+    proxychains-ng \
     iperf3
 
     # bridge-utils \
@@ -20,6 +21,6 @@ WORKDIR /openvpn
 COPY . .
 RUN chmod u+x ./*.sh
 
-# ENTRYPOINT ["bash"]
-# CMD ["./entrypoint.sh"]
-CMD ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["bash"]
+CMD ["./entrypoint.sh"]
+# CMD ["tail", "-f", "/dev/null"]
