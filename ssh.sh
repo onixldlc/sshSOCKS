@@ -41,12 +41,15 @@ fi
 echo "config file: [$CONFIG_PATH]" 
 
 
+
 if [ -f "$CONFIG_PATH" ]; then
     cp "$CONFIG_PATH" /etc/ssh/ssh.key
 else
     echo "No config file found at [$CONFIG_PATH] !"
     exit 1
 fi
+
+
 
 chmod 600 /etc/ssh/ssh.key
 

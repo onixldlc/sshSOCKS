@@ -17,6 +17,5 @@ else
 fi
 
 
-
-echo "both services started!"
+echo "services started!"
 tail -f /dev/null
