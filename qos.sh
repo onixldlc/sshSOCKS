@@ -28,11 +28,18 @@ tc qdisc del dev $INTERFACE root 2>/dev/null
 # apply new rules
 echo "Applying new tc rules on $INTERFACE with bandwidth $BANDWIDTH..."
 tc qdisc add dev $INTERFACE handle 1: root htb default 11
-tc class add dev $INTERFACE parent 1: classid 1:1 htb rate 1000Mbps
+tc class add dev $INTERFACE parent 1: classid 1:1 htb rate $BANDWIDTH
 tc class add dev $INTERFACE parent 1:1 classid 1:11 htb rate $BANDWIDTH
-tc qdisc add dev $INTERFACE parent 1:11 handle 10: netem delay 75ms
+tc qdisc add dev $INTERFACE parent 1:11 handle 10: netem delay 10ms
 
 
+# apply rules at server
+ssh -o "StrictHostKeyChecking=no" -i ${CONFIG_PATH} ${CONFIG_USERNAME}@${CONFIG_HOSTS} "\
+    sudo tc qdisc del dev $INTERFACE root 2>/dev/null; \
+    sudo tc qdisc add dev $INTERFACE handle 1: root htb default 11; \
+    sudo tc class add dev $INTERFACE parent 1: classid 1:1 htb rate $BANDWIDTH; \
+    sudo tc class add dev $INTERFACE parent 1:1 classid 1:11 htb rate $BANDWIDTH; \
+    sudo tc qdisc add dev $INTERFACE parent 1:11 handle 10: netem delay 10ms"
 
 
 
