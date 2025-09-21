@@ -7,7 +7,7 @@ services:
       - "1080:1080"
     volumes:
       - ./ssh.key:/etc/ssh/ssh.key        # optional
-      # - ./client.ovpn:/client.ovpn      # optional, if config path is used
+      # - ./ssh.key:/ssh.key      # optional, if config path is used
     environment:
       # SSH configuration options
       - CONFIG_HOSTS=127.0.0.1
