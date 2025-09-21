@@ -53,7 +53,7 @@ fi
 
 chmod 600 /etc/ssh/ssh.key
 
-ssh -D 1079 -C -N -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "ServerAliveInterval=60" -i /etc/ssh/ssh.key ${CONFIG_USERNAME}@${CONFIG_HOSTS} &
+ssh -D 1079 -C -N -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" -o "ServerAliveInterval=60" -i ${CONFIG_PATH} ${CONFIG_USERNAME}@${CONFIG_HOSTS} &
 echo "[+] ssh to ${CONFIG_USERNAME}@${CONFIG_HOSTS} started!"
 
-export ALL_PROXY="socks5h://127.0.0.1:1079"
+export ALL_PROXY="socks5://127.0.0.1:1079"
