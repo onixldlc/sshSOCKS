@@ -9,11 +9,6 @@ RUN apk add --no-cache \
     proxychains-ng \
     iperf3
 
-    # bridge-utils \
-    # easy-rsa \
-    # iptables \
-    # bash
-
 RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main \
     base64
 
@@ -23,4 +18,3 @@ RUN chmod u+x ./*.sh
 
 ENTRYPOINT ["bash"]
 CMD ["./entrypoint.sh"]
-# CMD ["tail", "-f", "/dev/null"]
